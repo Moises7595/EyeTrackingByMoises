@@ -18,3 +18,10 @@ C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessing
 C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\obj\Debug\netcoreapp3.1\WPFProcessingApplication.dll
 C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\obj\Debug\netcoreapp3.1\WPFProcessingApplication.pdb
 C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\obj\Debug\netcoreapp3.1\WPFProcessingApplication.genruntimeconfig.cache
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\unike\OneDrive\Documents\Git\WebGazer\EyeTrackingByMoises\WPFProcessingApplication\WPFProcessingApplication\obj\Debug\netcoreapp3.1\WPFProcessingApplication.csproj.CopyComplete

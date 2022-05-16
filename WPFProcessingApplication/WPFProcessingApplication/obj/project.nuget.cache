@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "X++fRqOLQcqBPhHvIkxtJ477ak9YY6zm9LF8cBEfyx/Wn0IRImdJXwCXB1WS6cFWqbyJ2Wk/frX8KBE/mINEiQ==",
+  "dgSpecHash": "9JoaScMm345UE+TNeROYcGoRRXQEAAw6VPwMX6B/dXcTJ2878cNG2JwVwcF7ZOXIO3E2M6W3YwQfl6CozweE9g==",
   "success": true,
   "projectFilePath": "C:\\Users\\unike\\OneDrive\\Documents\\Git\\WebGazer\\EyeTrackingByMoises\\WPFProcessingApplication\\WPFProcessingApplication\\WPFProcessingApplication.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\unike\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\unike\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\unike\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
