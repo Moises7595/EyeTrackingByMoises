@@ -91,6 +91,11 @@ namespace WPFProcessingApplication
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         public static extern bool DeleteObject(IntPtr hObject);
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         void LoadToImg()
         {
             IntPtr hBitmap = BmpHelper.Instance.Bmp.GetHbitmap();
