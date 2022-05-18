@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -43,7 +44,7 @@ namespace WPFProcessingApplication
         {
             BmpHelper.Instance.Refresh();
             startSecond = (int)media.Position.TotalMilliseconds;
-            this.media.Play();
+            this.media.Play(); 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -94,6 +95,12 @@ namespace WPFProcessingApplication
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void VideoBtnTrigg_Click(object sender, RoutedEventArgs e)
+        {
+            Storyboard storyboard = this.FindResource("VideoFull") as Storyboard;
+            storyboard.Begin();
         }
 
         void LoadToImg()

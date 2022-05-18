@@ -7,15 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Drop="Window_Drop" AllowDrop="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" Background="Black">
 
+    <Window.Resources>
+        <Storyboard x:Key="VideoFull">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="VideoColumn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="100"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Label Content="Processing App" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontStretch="Expanded" FontStyle="Oblique" FontSize="15"/>
-            <Button HorizontalAlignment="Right" Content="X" VerticalAlignment="Center" Click="Button_Click_3" Background="Gray" Foreground="White" FontSize="15"/>
+        <Grid Grid.Row="0" Background="Gray" Margin="5">
+            <Label Content="Processing App" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Expanded" FontStyle="Oblique" FontSize="18"/>
+            <Button HorizontalAlignment="Right" Content="X" VerticalAlignment="Center" Click="Button_Click_3" Background="Black" Foreground="White" FontSize="15"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -29,16 +38,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Label Content="Video" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontStretch="Expanded"/>
-                    <Button x:Name="VideoBtnTrigg" HorizontalAlignment="Right" Content="&lt;" VerticalAlignment="Center" Background="Gray" Foreground="White"/>
+                    <Label Content="Video" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Expanded"/>
+                    <Button x:Name="VideoBtnTrigg" HorizontalAlignment="Right" Content="&lt;" VerticalAlignment="Center" Background="Gray" Foreground="White" Click="VideoBtnTrigg_Click" Visibility="Collapsed"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <Label Content="Result" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontStretch="Expanded"/>
+                    <Label Content="Result" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Expanded"/>
                     <Button HorizontalAlignment="Right" Content="&lt;>" VerticalAlignment="Center" Background="Gray" Foreground="White"/>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Label Content="Heat Map" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontStretch="Expanded"/>
-                    <Button HorizontalAlignment="Left" Content=">" VerticalAlignment="Center" Background="Gray" Foreground="White"/>
+                    <Label Content="Heat Map" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Expanded"/>
+                    <Button HorizontalAlignment="Left" Content=">" VerticalAlignment="Center" Background="Gray" Foreground="White" Visibility="Collapsed"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
