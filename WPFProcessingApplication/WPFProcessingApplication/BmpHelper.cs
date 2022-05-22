@@ -57,20 +57,48 @@ namespace WPFProcessingApplication
         void ColorPixel(int x, int y, int d)
         {
             int nx = 0;
+            int indiceAumento = 10;
+            int red = 0, green = 0;
             for (int j = 0; j < d; j++)
             {
                 nx = x + j;
                 if (y >= 0 && y < Bmp.Height && nx >= 0 && nx < Bmp.Width)
                 {
                     System.Drawing.Color color = Bmp.GetPixel(nx, y);
-                    if (color.R == 0)
+                    if ((color.R + color.G + color.B) == 0)
                     {
-                        Bmp.SetPixel(nx, y, System.Drawing.Color.FromArgb(255, 255, 0));
+                        green = 255;
                     }
                     else
                     {
+                        red = color.R;
+                        green = color.G;
+                        if (green == 255)
+                        {
+                            if ((red + indiceAumento) <= 255)
+                            {
+                                red += indiceAumento;
+                            }
+                            else
+                            {
+                                green -= (indiceAumento - (255 - red));
+                                red = 255;
+                            }
+                        }
+                        else
+                        {
+                            if ((green - indiceAumento) >= 0)
+                            {
+                                green -= indiceAumento;
+                            }
+                            else
+                            {
+                                green = 0;
+                            }
+                        }
                         Bmp.SetPixel(nx, y, System.Drawing.Color.FromArgb(255, (color.G > 9) ? (color.G - 10) : 0, 0));
                     }
+                    Bmp.SetPixel(nx, y, System.Drawing.Color.FromArgb(red, green, 0));
                 }
             }
         }
