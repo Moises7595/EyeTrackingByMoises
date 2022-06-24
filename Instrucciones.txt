@@ -1,0 +1,6 @@
+Instrucciones:
+	- Abrir la consola en la ubicacion del conversor
+	- Ejecutar el comando
+[conversor.exe] -i [nombre del archivo origen] [nombre del archivo resultado].mp4
+Ejemplo:
+.\ffmpeg.exe -i .\video.webm video.mp4

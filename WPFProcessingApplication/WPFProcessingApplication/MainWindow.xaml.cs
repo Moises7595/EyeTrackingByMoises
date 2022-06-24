@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +27,9 @@ namespace WPFProcessingApplication
         DispatcherTimer timer;
         int startSecond = 0, stopSecond = 0;
 
+        Image image;
+        Button button;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,38 +37,75 @@ namespace WPFProcessingApplication
 
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
+
+            image = img;
+            button = btnSuper;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             slider.Value = media.Position.TotalSeconds;
+            lblCurrentTime.Content = media.Position.Duration().ToString(@"mm\:ss");
+        }
+
+        void LoadElements()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            if (media.Source == null)
+            {
+                fileDialog.Filter = "Videos|*.mp4";
+                if (fileDialog.ShowDialog() == true)
+                {
+                    media.Source = new Uri(fileDialog.FileName);
+
+                    media.LoadedBehavior = MediaState.Manual;
+                    media.UnloadedBehavior = MediaState.Manual;
+                    media.Volume = 1;
+                    media.Play();
+                    media.Pause();
+                }
+            }
+            if (JsonHelper.Instance.JsonFile == null)
+            {
+                fileDialog.Filter = "Json Files|*.json";
+                if (fileDialog.ShowDialog() == true)
+                {
+                    JsonHelper.Instance.LoadJson(fileDialog.FileName);
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BmpHelper.Instance.Refresh();
-            startSecond = (int)media.Position.TotalMilliseconds;
-            this.media.Play(); 
+            try
+            {
+                LoadElements();
+                BmpHelper.Instance.Refresh();
+                startSecond = (int)media.Position.TotalMilliseconds;
+                this.media.Play();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al cargar datos");
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            stopSecond = (int)media.Position.TotalMilliseconds;
+            stopSecond = (int)media.Position.TotalMilliseconds; 
             this.media.Pause();
             foreach (var item in JsonHelper.Instance.GetFromTime(startSecond, stopSecond))
             {
-                BmpHelper.Instance.ColorBitmap(item.X, item.Y);
-                LoadToImg();
+                BmpHelper.Instance.ColorCircle(item.X, item.Y);
             }
+            LoadToImg();
+            //Thread thead = new Thread(new ThreadStart(LoadToImg));
+            //thead.Start();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            if (fileDialog.ShowDialog() == true)
-            {
-                JsonHelper.Instance.LoadJson(fileDialog.FileName);
-            }
+            LoadElements();
         }
 
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -80,12 +121,15 @@ namespace WPFProcessingApplication
             media.LoadedBehavior = MediaState.Manual;
             media.UnloadedBehavior = MediaState.Manual;
             media.Volume = 1;
+            media.Play();
+            media.Pause();
         }
 
         private void media_MediaOpened(object sender, RoutedEventArgs e)
         {
             slider.Maximum = media.NaturalDuration.TimeSpan.TotalSeconds;
             JsonHelper.Instance.Duration = (int)media.NaturalDuration.TimeSpan.TotalMilliseconds;
+            lblTotalTime.Content = media.NaturalDuration.TimeSpan.Duration().ToString(@"mm\:ss");
             timer.Start();
         }
 
@@ -103,6 +147,28 @@ namespace WPFProcessingApplication
             storyboard.Begin();
         }
 
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (gdImage.Children.Contains(image))
+            {
+                gdImage.Children.Remove(image);
+                gdVideo.Children.Add(image);
+                gdImage.Visibility = Visibility.Collapsed;
+                uImg.Children.Remove(button);
+                button.Content = "Separar";
+                uVideo.Children.Add(button);
+            }
+            else
+            {
+                gdVideo.Children.Remove(image);
+                gdImage.Children.Add(image);
+                gdImage.Visibility = Visibility.Visible;
+                uVideo.Children.Remove(button);
+                button.Content = "Sobreponer";
+                uImg.Children.Add(button);
+            }            
+        }
+
         void LoadToImg()
         {
             IntPtr hBitmap = BmpHelper.Instance.Bmp.GetHbitmap();
@@ -116,6 +182,7 @@ namespace WPFProcessingApplication
                     System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions()
                     );
                 img.Source = source;
+                //img.Dispatcher.Invoke(new Action(() => img.Source = source));
             }
             finally
             {
